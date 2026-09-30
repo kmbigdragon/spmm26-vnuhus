@@ -1,0 +1,451 @@
+\documentclass[10pt]{beamer}
+\usepackage{lmodern}
+\usepackage[utf8]{inputenc}
+\usepackage{xeCJK}
+\usepackage{graphicx}
+\usepackage {mathtools}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetheme{CambridgeUS}
+\usecolortheme{dolphin}
+
+% set colors
+\definecolor{myNewColorA}{RGB}{120, 0, 0}
+\definecolor{myNewColorB}{RGB}{160, 30, 30}
+\definecolor{myNewColorC}{RGB}{220, 130, 130}
+\setbeamercolor*{palette primary}{bg=myNewColorC}
+\setbeamercolor*{palette secondary}{bg=myNewColorB, fg = white}
+\setbeamercolor*{palette tertiary}{bg=myNewColorA, fg = white}
+\setbeamercolor*{titlelike}{fg=myNewColorA}
+\setbeamercolor*{title}{bg=myNewColorA, fg = white}
+\setbeamercolor*{item}{fg=myNewColorA}
+\setbeamercolor*{caption name}{fg=myNewColorA}
+\setbeamercolor{block title}{bg=myNewColorA, fg=white}
+\setbeamercolor{block body}{bg=myNewColorC!5, fg=black}
+\usefonttheme{professionalfonts}
+\usepackage{natbib}
+\usepackage{hyperref}
+\usepackage{bookmark}
+%------------------------------------------------------------
+\titlegraphic{
+\includegraphics[height=0.75cm]{./HUS.png}\hspace{0.25cm}
+\includegraphics[height=0.75cm]{./NWU.png}
+}
+
+\setbeamerfont{title}{size=\large}
+\setbeamerfont{subtitle}{size=\small}
+\setbeamerfont{author}{size=\small}
+\setbeamerfont{date}{size=\small}
+\setbeamerfont{institute}{size=\small}
+
+\title[Summer Program on Mathematical Modeling 2026]{Summer Program on Mathematical Modeling 2026}
+\subtitle{Modeling Spatial Population Growth Using Reaction-Diffusion PDEs}
+\author[Modeling Spatial Population Growth Using PDEs]{Tran Dang Quang Minh, Mathematics and Computer Science}
+
+\institute[]{
+SPMM2026 \hspace{0.25cm} VNU Hanoi University of Science
+
+\hspace{1cm} Nara Women's University
+}
+\date[Hanoi, August 2026]
+{Hanoi, August 2026}
+
+%------------------------------------------------------------
+%This block of commands puts the table of contents at the 
+%beginning of each section and highlights the current section:
+%\AtBeginSection[]
+%{
+%  \begin{frame}
+%    \frametitle{Contents}
+%    \tableofcontents[currentsection]
+%  \end{frame}
+%}
+\AtBeginSection[]{
+  \begin{frame}
+  \vfill
+  \centering
+  \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+    \usebeamerfont{title}\insertsectionhead\par%
+  \end{beamercolorbox}
+  \vfill
+  \end{frame}
+}
+%------------------------------------------------------------
+\begin{document}
+
+%The next statement creates the title page.
+\frame{\titlepage}
+\begin{frame}
+\frametitle{Contents}
+\tableofcontents
+\end{frame}
+%------------------------------------------------------------
+\section{Introduction}
+    \begin{frame}{1. Introduction}
+      \begin{center}
+        \includegraphics[height=7cm]{./Fig0.png}
+      \end{center}
+    \end{frame}
+    \begin{frame}{1. Introduction}
+      \begin{center}
+        \begin{block}{Why this project?}
+            \begin{minipage}{\textwidth}
+              Instead of studying ODEs and PDEs only from a theoretical perspective which is really boring and hard to understand, why not apply them to some interesting Mathematical-Biological Models?  
+            \end{minipage}
+        \end{block}
+      \end{center}
+    \end{frame}
+
+\section{Mathematical Modeling}
+  \subsection{When ODE and PDE combine}
+    \begin{frame}{2. Mathematical Modeling}{When ODE and PDE combine}
+      \begin{center}
+        \begin{block}{Exponential Population Growth Equation}
+            \begin{minipage}{\textwidth}
+              Firstly, we start with a simple Exponential Population Growth Equation as below:
+              $$
+              \dfrac{dN}{dt} = rN
+              $$
+              Where $N(t)$ is the population size at time $t$, and $r$ is the growth rate (can be a constant $r$ or a function over time $r(t)$; to be simple we assume that $r = const$).
+            \end{minipage}
+        \end{block}
+      \end{center}
+    \end{frame}
+
+    \begin{frame}{2. Mathematical Modeling}{When ODE and PDE combine}
+      \begin{center}
+        \begin{block}{Logistic Population Growth Equation}
+            \begin{minipage}{\textwidth}
+              Now that with the Carrying Capacity $K$, we can use a Logistic Model:
+              $$
+              \dfrac{dN}{dt} = r\Big(1 - \dfrac{N}{K}\Big)N
+              $$
+              \begin{itemize}
+              \item $N \ll K$: The population grows exponentially.
+              \item $N \rightarrow K$: The population's growth speed decreases.
+              \item $N = K$: The population stops growing since $\dfrac{dN}{dt} = r\Big(1-\dfrac{N}{N}\Big)N = 0$.
+              \end{itemize}
+            \end{minipage}
+        \end{block}
+      \end{center}
+    \end{frame}
+    
+    \begin{frame}{2. Mathematical Modeling}{When ODE and PDE combine}
+      \begin{center}
+        \begin{block}{Reaction-Diffusion Equation}
+            \begin{minipage}{\textwidth}
+              Supposing that the population starts at the center of a fixed segment on the $Ox$ axis and it gradually spreads. The population density at the point $x$ at time $t$ is described by $N = N(x,t)$:
+              $$
+              \dfrac{\partial N}{\partial t} = \underbrace{D\dfrac{\partial^2 N}{\partial x^2}}_{\text{Diffusion}} + \underbrace{r\Big(1-\dfrac{N}{K}\Big)N}_{\text{Population Growth}}
+              $$
+              By normalizing the population density as $u = N/K$, the equation becomes the \textit{Fisher--KPP equation}.
+              $$
+              \dfrac{\partial u}{\partial t} = D\dfrac{\partial^2 u}{\partial x^2} + ru\Big(1-u\Big)
+              $$
+              Where $D > 0$ is the diffusion coefficient, which represents the rate at which the population spreads through space.
+            \end{minipage}
+        \end{block}
+      \end{center}
+    \end{frame}
+
+  \subsection{Expansion to Two-Dimensional Space}
+    \begin{frame}{2. Mathematical Modeling}{Expansion to Two-Dimensional Space}
+      \begin{center}
+        \begin{block}{Reaction-Diffusion Equation on Two-Dimensional Space}
+            \begin{minipage}{\textwidth}
+              Suppose that a population is initially concentrated at the center of a rectangular domain in the $Oxy$ plane and gradually spreads in both the horizontal and vertical directions. The population density at position $(x,y)$ and time $t$ is described by $N = N(x,y,t)$:
+              $$
+              \dfrac{\partial N}{\partial t} = D_x\dfrac{\partial^2 N}{\partial x^2} + D_y\dfrac{\partial^2 N}{\partial y^2} + r\Big(1-\dfrac{N}{K}\Big)N
+              $$
+              Where $D_x, D_y > 0$ are the diffusion coefficients representing the rates at which the population spreads in the horizontal and vertical directions, respectively.
+            \end{minipage}
+        \end{block}
+      \end{center}
+    \end{frame}
+
+    \begin{frame}{2. Mathematical Modeling}{Expansion to Two-Dimensional Space}
+      \begin{center}
+        \begin{block}{Reaction-Diffusion Equation on Two-Dimensional Space}
+            \begin{minipage}{\textwidth}
+              If $D_x = D_y$ then we can write in short as:
+              $$
+              \dfrac{\partial N}{\partial t} = D\Big(\dfrac{\partial^2 N}{\partial x^2} + \dfrac{\partial^2 N}{\partial y^2}\Big) + r\Big(1-\dfrac{N}{K}\Big)N
+              $$
+              Or even shorter:
+              $$
+              \dfrac{\partial N}{\partial t} = D \nabla^2 N + r\Big(1-\dfrac{N}{K}\Big)N
+              $$
+              Note that $D_x$, $D_y$, and $D$ may be functions of space and time, such as $D_x(x,y,t)$, $D_y(x,y,t)$, and $D(x,y,t)$. However, for simplicity, we assume that they are constants.
+            \end{minipage}
+        \end{block}
+      \end{center}
+    \end{frame}
+  \subsection{Boundary Conditions}
+    \begin{frame}{2. Mathematical Model}{Neumann Boundary Conditions}
+      \begin{block}{No-Flux Boundary Condition}
+          We assume that the population cannot leave the domain. Therefore, there is no population flux across the boundary:
+          $$
+          \frac{\partial N}{\partial n}=0
+          \qquad \text{on } \partial\Omega
+          $$
+          where $\partial\Omega$ denotes the boundary of the spatial domain.
+      \end{block}
+      \begin{block}{For a Rectangular Domain}
+          For $\Omega=[0,L_x]\times[0,L_y]$, the Neumann Boundary Condition is:
+          $$
+          \begin{aligned}
+          \frac{\partial N}{\partial x}(0,y,t)
+          &=
+          \frac{\partial N}{\partial x}(L_x,y,t)=0,\\[4pt]
+          \frac{\partial N}{\partial y}(x,0,t)
+          &=
+          \frac{\partial N}{\partial y}(x,L_y,t)=0.
+          \end{aligned}
+          $$
+      \end{block}
+    \end{frame}
+
+    \begin{frame}{2. Mathematical Model}{Dirichlet Boundary Condition}
+      \begin{block}{Dirichlet Boundary Condition}
+          Instead of specifying the population flux, we specify the population density directly on the boundary:
+          $$
+          N(x,y,t)=g(x,y,t)
+          \qquad \text{on } \partial\Omega.
+          $$
+          For example, a zero-density boundary condition is:
+          $$
+          N(x,y,t)=0
+          \qquad \text{on } \partial\Omega.
+          $$
+      \end{block}
+      \begin{block}{Interpretation}
+          The population density is prescribed at the boundary.
+
+          Unlike the Neumann condition, individuals may cross the boundary.
+
+          To be simple we use Neumann Boundary Condition in this presentation.
+      \end{block}
+    \end{frame}
+
+\section{Numerical Methods}
+  \subsection{Spatial Discretization}
+    \begin{frame}{3. Numerical Methods}{Spatial Discretization}
+      \begin{block}{Finite Difference Method}
+          We discretize the spatial domain into a uniform grid:
+          $$
+          x_i=i\Delta x,\qquad
+          y_j=j\Delta y
+          $$
+          and approximate the population density by
+          $$
+          N(x_i,y_j,t)\approx N_{i,j}(t).
+          $$
+      \end{block}
+    \end{frame}
+  \subsection{Second-Order Spatial Derivatives}
+    \begin{frame}{3. Numerical Methods}{Second-Order Spatial Derivatives}
+      \begin{block}{Second-Order Spatial Derivatives}
+          Using the central difference approximation $$f''(x) \approx \dfrac{f(x+h) - 2f(x) + f(x-h)}{h^2}$$
+          Then:
+          $$
+          N_{xx} = \frac{\partial^2N}{\partial x^2}
+          \approx
+          \frac{N_{i+1,j}-2N_{i,j}+N_{i-1,j}}
+          {(\Delta x)^2}
+          $$
+          $$
+          N_{yy} = \frac{\partial^2N}{\partial y^2}
+          \approx
+          \frac{N_{i,j+1}-2N_{i,j}+N_{i,j-1}}
+          {(\Delta y)^2}.
+          $$
+      \end{block}
+    \end{frame}
+  \subsection{Time Discretization}
+    \begin{frame}{3. Numerical Methods}{Time Discretization}
+      Let
+      $$
+      t_n=n\Delta t,
+      \qquad
+      N_{i,j}^n\approx N(x_i,y_j,t_n).
+      $$
+      Using the Explicit Euler method:
+      $$
+      \frac{\partial N}{\partial t}
+      \approx
+      \frac{N_{i,j}^{n+1}-N_{i,j}^{n}}
+      {\Delta t}.
+      $$
+      Therefore,
+      $$
+      N_{i,j}^{n+1}
+      =
+      N_{i,j}^{n}
+      +
+      \Delta t \Big[D_x N_{xx} + D_y N_{yy} + rN^n_{i, j} \Big(1 - \dfrac{N^n_{i, j}}{K} \Big)\Big],
+      $$
+    \end{frame}
+
+\section{Visualization and Simulation}
+  \subsection{One-Dimensional Simulation}
+    \begin{frame}{4. Visualization and Simulation}{One-Dimensional Simulation}
+      Suppose we have a population of animals in a closed one-dimensional habitat
+      $$
+      \Omega = [0,100]
+      $$
+      and no animal can cross the boundary of the domain. Therefore, the Neumann Boundary Condition is:
+      $$
+      \frac{\partial N}{\partial x}(0,t)
+      =
+      \frac{\partial N}{\partial x}(100,t)
+      =
+      0.
+      $$
+      We choose the simulation constants:
+      $$
+      D=1,\qquad r=0.1,\qquad K=100.
+      $$
+    \end{frame}
+    \begin{frame}{4. Visualization and Simulation}{One-Dimensional Simulation}
+      We choose the initial population distribution:
+      $$
+      N(x,0)
+      =
+      N_0
+      \exp\left[
+      -\frac{(x-x_0)^2}{2\sigma^2}
+      \right].
+      $$
+      Suppose that the population initially concentrates at the center of the domain, where
+      $$
+      x_0=50,\qquad N_0=100,\qquad \sigma=5.
+      $$
+      Then the initial population distribution is:
+      $$
+      N(x,0)
+      =
+      100
+      \exp\left[
+      -\frac{(x-50)^2}{50}
+      \right].
+      $$
+    \end{frame}
+    \begin{frame}{4. Visualization and Simulation}{One-Dimensional Simulation}
+      \begin{center}
+        \includegraphics[height=6.5cm]{./Fig1.png}
+      \end{center}
+    \end{frame}
+    \begin{frame}{4. Visualization and Simulation}{One-Dimensional Simulation}
+      \begin{center}
+        \includegraphics[height=6.5cm]{./Fig2.png}
+      \end{center}
+    \end{frame}
+
+  \subsection{Two-Dimensional Simulation}
+    \begin{frame}{4. Visualization and Simulation}{Two-Dimensional Simulation}
+      Suppose we have a population of animals in a closed rectangular domain 
+      $$\Omega = [0, 100] \times [0, 100]$$
+      and no animals can leave the domain. So the Neumann Boundary Condition is:
+      $$
+            \begin{aligned}
+            \frac{\partial N}{\partial x}(0,y,t)
+            &=
+            \frac{\partial N}{\partial x}(100,y,t)=0,\\[4pt]
+            \frac{\partial N}{\partial y}(x,0,t)
+            &=
+            \frac{\partial N}{\partial y}(x,100,t)=0.
+            \end{aligned}
+            $$
+      We choose simulation parameters:
+      $$ D_x = 4, \qquad D_y = 1, \qquad r = 0.1, \qquad K = 100.$$
+    \end{frame}
+
+    \begin{frame}{4. Visualization and Simulation}{Two-Dimensional Simulation}
+      And we choose the initial state:
+      $$ N(x,y,0) = N_0 \exp \Big[-\dfrac{(x-x_0)^2 + (y-y_0)^2}{2\sigma^2}\Big]$$
+      Suppose that the initial location is at the center of the rectangular domain $(x_0, y_0) = (50, 50)$, the maximum initial population density is $N_0 = 80$ and the initial population spread is $\sigma = 5$. Then we have:
+      $$ N(x,y,0) = 80 \exp \Big[-\dfrac{(x-50)^2 + (y-50)^2}{50}\Big]$$
+    \end{frame}
+
+    \begin{frame}{4. Visualization and Simulation}{Two-Dimensional Simulation}
+      \begin{center}
+        \includegraphics[height=6.5cm]{./Fig3.png}
+      \end{center}
+    \end{frame}
+
+\section{Conclusion}
+    \begin{frame}{5. Conclusion}
+      \begin{block}{Conclusion}
+          \begin{itemize}
+              \item We extended the Logistic Growth Model from an ODE to a Reaction-Diffusion PDE to describe spatial population dynamics.
+              
+              \item The model captures both population growth and spatial diffusion.
+              
+              \item Numerical simulations illustrate how the population spreads and approaches the carrying capacity over time.
+              
+              \item Different diffusion coefficients can produce different spatial spreading patterns.
+          \end{itemize}
+      \end{block}
+    \end{frame}
+
+\section{References}
+  \begin{frame}{References}
+    \begin{itemize}
+        \item[\textbf{[1]}] J. D. Murray,
+        \textit{Mathematical Biology I: An Introduction},
+        3rd ed., Springer, 2002.
+
+        \item[\textbf{[2]}] R. A. Fisher,
+        ``The Wave of Advance of Advantageous Genes,''
+        \textit{Annals of Eugenics}, vol. 7, pp. 355--369, 1937.
+
+        \item[\textbf{[3]}] A. N. Kolmogorov, I. G. Petrovskii, and N. S. Piskunov,
+        ``A Study of the Equation of Diffusion with Increase in the Quantity of Matter,
+        and Its Application to a Biological Problem,''
+        \textit{Moscow University Mathematics Bulletin}, 1937.
+
+        \item[\textbf{[4]}] R. J. LeVeque,
+        \textit{Finite Difference Methods for Ordinary and Partial Differential Equations},
+        SIAM, 2007.
+    \end{itemize}
+  \end{frame}
+
+
+\section*{Acknowledgement}
+    \begin{frame}[plain]
+      \begin{center}
+          \vspace{1.2cm}
+          {\usebeamerfont{title}
+          \textcolor{myNewColorA}{\Huge\textbf{Thank You!}}
+          }
+          \vspace{0.4cm}
+          {\Large
+          \textcolor{myNewColorB}{Questions \& Discussion}
+          }
+          \vspace{0.7cm}
+          \textcolor{myNewColorC}{\rule{0.55\textwidth}{1.2pt}}
+          \vspace{0.5cm}
+
+          {\normalsize
+          \textbf{Summer Program on Mathematical Modeling 2026}
+          }
+          \vspace{0.2cm}
+
+          {\small
+          Modeling Spatial Population Growth Using Reaction-Diffusion PDEs
+          }
+          \vspace{0.6cm}
+
+          {\small
+          Tran Dang Quang Minh\\
+          VNU Hanoi University of Science
+          }
+          \vfill
+          \includegraphics[height=0.7cm]{./HUS.png}
+          \hspace{0.3cm}
+          \includegraphics[height=0.7cm]{./NWU.png}
+      \end{center}
+    \end{frame}
+
+\end{document}

@@ -1,14 +1,20 @@
 \beamer@sectionintoc {1}{Introduction}{3}{0}{1}
-\beamer@sectionintoc {2}{Mathematical Modeling}{6}{0}{2}
-\beamer@subsectionintoc {2}{1}{When ODE and PDE combine}{7}{0}{2}
-\beamer@subsectionintoc {2}{2}{Expansion to Two-Dimensional Space}{10}{0}{2}
-\beamer@subsectionintoc {2}{3}{Boundary Conditions}{12}{0}{2}
-\beamer@sectionintoc {3}{Numerical Methods}{14}{0}{3}
-\beamer@subsectionintoc {3}{1}{Spatial Discretization}{15}{0}{3}
-\beamer@subsectionintoc {3}{2}{Second-Order Spatial Derivatives}{16}{0}{3}
-\beamer@subsectionintoc {3}{3}{Time Discretization}{17}{0}{3}
-\beamer@sectionintoc {4}{Visualization and Simulation}{18}{0}{4}
-\beamer@subsectionintoc {4}{1}{One-Dimensional Simulation}{19}{0}{4}
-\beamer@subsectionintoc {4}{2}{Two-Dimensional Simulation}{23}{0}{4}
-\beamer@sectionintoc {5}{Conclusion}{26}{0}{5}
-\beamer@sectionintoc {6}{References}{28}{0}{6}
+\beamer@sectionintoc {2}{Research Objectives}{6}{0}{2}
+\beamer@sectionintoc {3}{Literature Review}{8}{0}{3}
+\beamer@subsectionintoc {3}{1}{Previous Studies}{9}{0}{3}
+\beamer@subsectionintoc {3}{2}{Mathematical Modeling}{11}{0}{3}
+\beamer@sectionintoc {4}{Research Methodology}{18}{0}{4}
+\beamer@subsectionintoc {4}{1}{Finite Difference Method}{19}{0}{4}
+\beamer@subsectionintoc {4}{2}{Boundary Condition and Stability}{22}{0}{4}
+\beamer@subsectionintoc {4}{3}{Finite Element Method}{24}{0}{4}
+\beamer@subsectionintoc {4}{4}{ADI Method}{27}{0}{4}
+\beamer@subsectionintoc {4}{5}{Implementation}{29}{0}{4}
+\beamer@sectionintoc {5}{Results and Discussion}{30}{0}{5}
+\beamer@subsectionintoc {5}{1}{One-Dimensional Simulation}{31}{0}{5}
+\beamer@subsectionintoc {5}{2}{Two-Dimensional Simulation}{35}{0}{5}
+\beamer@subsectionintoc {5}{3}{Real Terrain: Ba V\`{\i }}{38}{0}{5}
+\beamer@subsectionintoc {5}{4}{Case Study: Neolithic Europe}{46}{0}{5}
+\beamer@subsectionintoc {5}{5}{Comparison of Methods}{50}{0}{5}
+\beamer@subsectionintoc {5}{6}{Discussion}{52}{0}{5}
+\beamer@sectionintoc {6}{Conclusion}{53}{0}{6}
+\beamer@sectionintoc {7}{References}{55}{0}{7}

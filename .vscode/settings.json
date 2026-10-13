@@ -1,3 +1,4 @@
 {
-  "cSpell.words": ["Neumann"]
+  "cSpell.words": ["Neumann"],
+  "python-envs.defaultEnvManager": "ms-python.python:system"
 }
